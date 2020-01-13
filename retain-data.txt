@@ -1,0 +1,148 @@
+mypi3-13
+docker run -it ubuntu:xenial bash
+
+Added a line to the file /usr/src/test.txt
+cd /usr/src
+echo "test text 011220" > test.txt
+
+docker container ls -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
+3a70092262ab        ubuntu:xenial       "bash"              2 minutes ago       Exited (0) 24 seconds ago                       wizardly_aryabhata
+
+docker start -i 3a70092262ab
+
+root@3a70092262ab:/# cat /usr/src/test.txt
+test text 011220
+ubuntu ws009
+mkdir xenial
+cd xenial/
+mkdir output
+docker run -it ubuntu:xenial bash
+ubuntu                  xenial              c6a43cd4801e        3 weeks ago         123MB
+bdf9cc9ba92d        ubuntu:xenial       "bash"              5 minutes ago       Up 5 minutes                            eager_goldwasser
+docker start -i bdf9cc9ba92d
+wc /usr/src/pkgsboot.txt
+  101   895 11032 /usr/src/pkgsboot.txt
+apt-get update && apt-get -y install gawk wget git-core \
+    diffstat unzip texinfo gcc-multilib build-essential \
+    chrpath socat cpio python python3 python3-pip \
+    python3-pexpect xz-utils debianutils iputils-ping \
+    libsdl1.2-dev xterm tar locales
+dpkg -l | sort > /usr/src/1stapt-get.txt
+wc /usr/src/1stapt-get.txt
+  447  4388 56883 /usr/src/1stapt-get.txt
+s -la /bin/sh
+lrwxrwxrwx 1 root root 4 Feb 17  2016 /bin/sh -> dash
+rm /bin/sh && ln -s bash /bin/sh
+ls -la /bin/sh
+lrwxrwxrwx 1 root root 4 Jan 12 23:56 /bin/sh -> bash
+cd /usr/src
+git clone https://github.com/develone/svd_rgb.git
+cd svd_rgb
+cd src
+make
+root@bdf9cc9ba92d:/usr/src/svd_rgb/src# ./master
+In main red.pgm Sred.bin rcred.bin 0 0
+In main grn.pgm Sgrn.bin rcgrn.bin 0 0
+In main blu.pgm Sblu.bin rcblu.bin 0 0
+name: Allen
+age: 20
+0x0
+
+ 1st thread processing th_id[0] 0x6d87b700
+In mysvd input_file: red.pgm
+In mysvd first_output: Sred.bin
+In mysvd second_output: rcred.bin
+In mysvd status: 0
+In mysvd num_bytes_rd: 0
+
+ncols=256 nrows=256 
+In mysvd status input file read: 1 num_bytes_rd 65536
+red.pgm th0.len1 = 0 
+len = 264192 th0.len2 = 264192 th0.len3 = 264192 th0.len4 = 264192
+setting up ptrs with malloc
+pa 0x6e2c1810 ppa 0x6e2c1010  
+pv = 0x6e343810 ppv = 0x6e343010 
+pvt = 0x6e23f810 ppvt = 0x6e23f010 
+pds = 0x6e280810 ppds = 0x6e280010 
+puds = 0x6e302810 ppuds = 0x6e302010 
+pudsvt = 0x6e1bd810 ppudsvt = 0x6e1bd010 
+U row = 256 col = 256 
+Singular Values
+V row = 256 col = 256 
+V' row = 256 col = 256 
+Call mul u * s  
+UDS row = 256 col = 256 
+Call mul u * ds * vt 
+USDVT row = 256 col = 256 
+ps converted from float to int 0x680208e0 
+# of data written 0x10000 
+
+ 2nd thread processing th_id[1] 0x6d87b700
+In mysvd input_file: grn.pgm
+In mysvd first_output: Sgrn.bin
+In mysvd second_output: rcgrn.bin
+In mysvd status: 0
+In mysvd num_bytes_rd: 0
+
+ncols=256 nrows=256 
+In mysvd status input file read: 1 num_bytes_rd 65536
+grn.pgm th1.len1 = 0 
+len = 264192 th1.len2 = 264192 th1.len3 = 264192 th1.len4 = 264192
+len = 264192 th1.len2 = 264192 th1.len3 = 264192 th1.len4 = 264192
+setting up ptrs with malloc
+pa 0x680f3390 ppa 0x680f2b90  
+pv = 0x68072370 ppv = 0x68071b70 
+pvt = 0x681743b0 ppvt = 0x68173bb0 
+pds = 0x68133ba0 ppds = 0x681333a0 
+puds = 0x680b2b80 ppuds = 0x680b2380 
+pudsvt = 0x681f53d0 ppudsvt = 0x681f4bd0 
+U row = 256 col = 256 
+Singular Values
+V row = 256 col = 256 
+V' row = 256 col = 256 
+Call mul u * s  
+UDS row = 256 col = 256 
+Call mul u * ds * vt 
+USDVT row = 256 col = 256 
+ps converted from float to int 0x680208e0 
+# of data written 0x10000 
+
+ 3rd thread processing th_id[2] 0x6d87b700
+In mysvd input_file: blu.pgm
+In mysvd first_output: Sblu.bin
+In mysvd second_output: rcblu.bin
+In mysvd status: 0
+In mysvd num_bytes_rd: 0
+
+ncols=256 nrows=256 
+In mysvd status input file read: 1 num_bytes_rd 65536
+blu.pgm th2.len1 = 0 
+len = 264192 th2.len2 = 264192 th2.len3 = 264192 th2.len4 = 264192
+len = 264192 th2.len2 = 264192 th2.len3 = 264192 th2.len4 = 264192
+setting up ptrs with malloc
+pa 0x681b4bc0 ppa 0x681b43c0  
+pv = 0x680e23e0 ppv = 0x680e1be0 
+pvt = 0x68235be0 ppvt = 0x682353e0 
+pds = 0x681f53d0 ppds = 0x681f4bd0 
+puds = 0x681743b0 ppuds = 0x68173bb0 
+pudsvt = 0x682b6c00 ppudsvt = 0x682b6400 
+U row = 256 col = 256 
+Singular Values
+V row = 256 col = 256 
+V' row = 256 col = 256 
+Call mul u * s  
+UDS row = 256 col = 256 
+Call mul u * ds * vt 
+USDVT row = 256 col = 256 
+ps converted from float to int 0x680208e0 
+# of data written 0x10000 
+all threads joined
+In main status 4 num_bytes_rd 65536 
+In main status 4 num_bytes_rd 65536 
+In main status 4 num_bytes_rd 65536
+uname -a
+Linux bdf9cc9ba92d 4.4.0-171-generic #200-Ubuntu SMP Tue Dec 3 11:04:55 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+
+git clone https://gist.github.com/e0060aeecab35b6c8b2da4b6825203c5.git
+
