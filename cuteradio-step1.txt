@@ -1,0 +1,232 @@
+docker build -t xx1 .
+vidal@ws009:~/docker-examples/xenial$ mkdir output
+vidal@ws009:~/docker-examples/xenial$ docker run -it --rm -v $PWD/output:/home/cuteradio/output xx1:latest
+root@a5f804827d63:/# cd /home/cuteradio/output/
+root@a5f804827d63:/home/cuteradio/output# ls
+root@a5f804827d63:/home/cuteradio/output# git clone https://github.com/develone/svd_rgb.git
+Cloning into 'svd_rgb'...
+remote: Enumerating objects: 63, done.
+remote: Counting objects: 100% (63/63), done.
+remote: Compressing objects: 100% (44/44), done.
+remote: Total 63 (delta 19), reused 61 (delta 17), pack-reused 0
+Unpacking objects: 100% (63/63), done.
+Checking connectivity... done.
+root@a5f804827d63:/home/cuteradio/output# cd svd_rgb/src/
+root@a5f804827d63:/home/cuteradio/output/svd_rgb/src# make
+gcc -c -o obj/svd.o svd.c -I../include
+gcc -c -o obj/disp_mat.o disp_mat.c -I../include
+gcc -c -o obj/mul_mat.o mul_mat.c -I../include
+gcc -c -o obj/pnmio.o pnmio.c -I../include
+gcc -c -o obj/error.o error.c -I../include
+gcc -c -o obj/mythread.o mythread.c -I../include
+mythread.c: In function 'mysvd':
+mythread.c:58:11: warning: format '%x' expects argument of type 'unsigned int', but argument 2 has type 'pthread_t {aka long unsigned int}' [-Wformat=]
+    printf("\n 1st thread processing th_id[0] 0x%x\n",th_id[0]);
+           ^
+mythread.c:120:11: warning: format '%x' expects argument of type 'unsigned int', but argument 2 has type 'float *' [-Wformat=]
+    printf("pa 0x%x ppa 0x%x  \n",th0.pa,th0.ppa);
+           ^
+mythread.c:120:11: warning: format '%x' expects argument of type 'unsigned int', but argument 3 has type 'float **' [-Wformat=]
+mythread.c:121:11: warning: format '%x' expects argument of type 'unsigned int', but argument 2 has type 'float *' [-Wformat=]
+    printf("pv = 0x%x ppv = 0x%x \n",th0.pv,th0.ppv);
+           ^
+mythread.c:121:11: warning: format '%x' expects argument of type 'unsigned int', but argument 3 has type 'float **' [-Wformat=]
+mythread.c:122:11: warning: format '%x' expects argument of type 'unsigned int', but argument 2 has type 'float *' [-Wformat=]
+    printf("pvt = 0x%x ppvt = 0x%x \n",th0.pvt,th0.ppvt);
+           ^
+mythread.c:122:11: warning: format '%x' expects argument of type 'unsigned int', but argument 3 has type 'float **' [-Wformat=]
+mythread.c:123:11: warning: format '%x' expects argument of type 'unsigned int', but argument 2 has type 'float *' [-Wformat=]
+    printf("pds = 0x%x ppds = 0x%x \n",th0.pds,th0.ppds);
+           ^
+mythread.c:123:11: warning: format '%x' expects argument of type 'unsigned int', but argument 3 has type 'float **' [-Wformat=]
+mythread.c:124:11: warning: format '%x' expects argument of type 'unsigned int', but argument 2 has type 'float *' [-Wformat=]
+    printf("puds = 0x%x ppuds = 0x%x \n",th0.puds,th0.ppuds);
+           ^
+mythread.c:124:11: warning: format '%x' expects argument of type 'unsigned int', but argument 3 has type 'float **' [-Wformat=]
+mythread.c:125:11: warning: format '%x' expects argument of type 'unsigned int', but argument 2 has type 'float *' [-Wformat=]
+    printf("pudsvt = 0x%x ppudsvt = 0x%x \n",th0.pudsvt,th0.ppudsvt);
+           ^
+mythread.c:125:11: warning: format '%x' expects argument of type 'unsigned int', but argument 3 has type 'float **' [-Wformat=]
+mythread.c:201:11: warning: format '%x' expects argument of type 'unsigned int', but argument 2 has type 'FILE * {aka struct _IO_FILE *}' [-Wformat=]
+    printf("ps converted from float to int 0x%x \n",th0.outptr);
+           ^
+mythread.c:220:11: warning: format '%x' expects argument of type 'unsigned int', but argument 2 has type 'pthread_t {aka long unsigned int}' [-Wformat=]
+    printf("\n 2nd thread processing th_id[1] 0x%x\n",th_id[1]);
+           ^
+mythread.c:283:11: warning: format '%x' expects argument of type 'unsigned int', but argument 2 has type 'float *' [-Wformat=]
+    printf("pa 0x%x ppa 0x%x  \n",th1.pa,th1.ppa);
+           ^
+mythread.c:283:11: warning: format '%x' expects argument of type 'unsigned int', but argument 3 has type 'float **' [-Wformat=]
+mythread.c:284:11: warning: format '%x' expects argument of type 'unsigned int', but argument 2 has type 'float *' [-Wformat=]
+    printf("pv = 0x%x ppv = 0x%x \n",th1.pv,th1.ppv);
+           ^
+mythread.c:284:11: warning: format '%x' expects argument of type 'unsigned int', but argument 3 has type 'float **' [-Wformat=]
+mythread.c:285:11: warning: format '%x' expects argument of type 'unsigned int', but argument 2 has type 'float *' [-Wformat=]
+    printf("pvt = 0x%x ppvt = 0x%x \n",th1.pvt,th1.ppvt);
+           ^
+mythread.c:285:11: warning: format '%x' expects argument of type 'unsigned int', but argument 3 has type 'float **' [-Wformat=]
+mythread.c:286:11: warning: format '%x' expects argument of type 'unsigned int', but argument 2 has type 'float *' [-Wformat=]
+    printf("pds = 0x%x ppds = 0x%x \n",th1.pds,th1.ppds);
+           ^
+mythread.c:286:11: warning: format '%x' expects argument of type 'unsigned int', but argument 3 has type 'float **' [-Wformat=]
+mythread.c:287:11: warning: format '%x' expects argument of type 'unsigned int', but argument 2 has type 'float *' [-Wformat=]
+    printf("puds = 0x%x ppuds = 0x%x \n",th1.puds,th1.ppuds);
+           ^
+mythread.c:287:11: warning: format '%x' expects argument of type 'unsigned int', but argument 3 has type 'float **' [-Wformat=]
+mythread.c:288:11: warning: format '%x' expects argument of type 'unsigned int', but argument 2 has type 'float *' [-Wformat=]
+    printf("pudsvt = 0x%x ppudsvt = 0x%x \n",th1.pudsvt,th1.ppudsvt);
+           ^
+mythread.c:288:11: warning: format '%x' expects argument of type 'unsigned int', but argument 3 has type 'float **' [-Wformat=]
+mythread.c:364:11: warning: format '%x' expects argument of type 'unsigned int', but argument 2 has type 'FILE * {aka struct _IO_FILE *}' [-Wformat=]
+    printf("ps converted from float to int 0x%x \n",th1.outptr);
+           ^
+mythread.c:383:11: warning: format '%x' expects argument of type 'unsigned int', but argument 2 has type 'pthread_t {aka long unsigned int}' [-Wformat=]
+    printf("\n 3rd thread processing th_id[2] 0x%x\n",th_id[2]);
+           ^
+mythread.c:446:11: warning: format '%x' expects argument of type 'unsigned int', but argument 2 has type 'float *' [-Wformat=]
+    printf("pa 0x%x ppa 0x%x  \n",th2.pa,th2.ppa);
+           ^
+mythread.c:446:11: warning: format '%x' expects argument of type 'unsigned int', but argument 3 has type 'float **' [-Wformat=]
+mythread.c:447:11: warning: format '%x' expects argument of type 'unsigned int', but argument 2 has type 'float *' [-Wformat=]
+    printf("pv = 0x%x ppv = 0x%x \n",th2.pv,th2.ppv);
+           ^
+mythread.c:447:11: warning: format '%x' expects argument of type 'unsigned int', but argument 3 has type 'float **' [-Wformat=]
+mythread.c:448:11: warning: format '%x' expects argument of type 'unsigned int', but argument 2 has type 'float *' [-Wformat=]
+    printf("pvt = 0x%x ppvt = 0x%x \n",th2.pvt,th2.ppvt);
+           ^
+mythread.c:448:11: warning: format '%x' expects argument of type 'unsigned int', but argument 3 has type 'float **' [-Wformat=]
+mythread.c:449:11: warning: format '%x' expects argument of type 'unsigned int', but argument 2 has type 'float *' [-Wformat=]
+    printf("pds = 0x%x ppds = 0x%x \n",th2.pds,th2.ppds);
+           ^
+mythread.c:449:11: warning: format '%x' expects argument of type 'unsigned int', but argument 3 has type 'float **' [-Wformat=]
+mythread.c:450:11: warning: format '%x' expects argument of type 'unsigned int', but argument 2 has type 'float *' [-Wformat=]
+    printf("puds = 0x%x ppuds = 0x%x \n",th2.puds,th2.ppuds);
+           ^
+mythread.c:450:11: warning: format '%x' expects argument of type 'unsigned int', but argument 3 has type 'float **' [-Wformat=]
+mythread.c:451:11: warning: format '%x' expects argument of type 'unsigned int', but argument 2 has type 'float *' [-Wformat=]
+    printf("pudsvt = 0x%x ppudsvt = 0x%x \n",th2.pudsvt,th2.ppudsvt);
+           ^
+mythread.c:451:11: warning: format '%x' expects argument of type 'unsigned int', but argument 3 has type 'float **' [-Wformat=]
+mythread.c:527:11: warning: format '%x' expects argument of type 'unsigned int', but argument 2 has type 'FILE * {aka struct _IO_FILE *}' [-Wformat=]
+    printf("ps converted from float to int 0x%x \n",th2.outptr);
+           ^
+gcc -c -o obj/trans_mat.o trans_mat.c -I../include
+gcc -c -o obj/master.o master.c -I../include
+master.c: In function 'main':
+master.c:87:12: warning: format '%x' expects argument of type 'unsigned int', but argument 2 has type 'pthread_t {aka long unsigned int}' [-Wformat=]
+     printf("0x%x\n",th_id[0]);
+            ^
+gcc -o master obj/svd.o obj/disp_mat.o obj/mul_mat.o obj/pnmio.o obj/error.o obj/mythread.o obj/trans_mat.o obj/master.o -I../include -lm -lpthread
+root@a5f804827d63:/home/cuteradio/output/svd_rgb/src# time ./master
+In main red.pgm Sred.bin rcred.bin 0 0
+In main grn.pgm Sgrn.bin rcgrn.bin 0 0
+In main blu.pgm Sblu.bin rcblu.bin 0 0
+name: Allen
+age: 20
+0x0
+
+ 1st thread processing th_id[0] 0x2b2f5700
+In mysvd input_file: red.pgm
+In mysvd first_output: Sred.bin
+In mysvd second_output: rcred.bin
+In mysvd status: 0
+In mysvd num_bytes_rd: 0
+
+ncols=256 nrows=256 
+In mysvd status input file read: 1 num_bytes_rd 65536
+red.pgm th0.len1 = 0 
+len = 264192 th0.len2 = 264192 th0.len3 = 264192 th0.len4 = 264192
+setting up ptrs with malloc
+pa 0x2bd3b810 ppa 0x2bd3b010  
+pv = 0x2bdbd810 ppv = 0x2bdbd010 
+pvt = 0x2bcb9810 ppvt = 0x2bcb9010 
+pds = 0x2bcfa810 ppds = 0x2bcfa010 
+puds = 0x2bd7c810 ppuds = 0x2bd7c010 
+pudsvt = 0x2bc37810 ppudsvt = 0x2bc37010 
+U row = 256 col = 256 
+Singular Values
+V row = 256 col = 256 
+V' row = 256 col = 256 
+Call mul u * s  
+UDS row = 256 col = 256 
+Call mul u * ds * vt 
+USDVT row = 256 col = 256 
+ps converted from float to int 0x240208e0 
+# of data written 0x10000 
+
+ 2nd thread processing th_id[1] 0x2b2f5700
+In mysvd input_file: grn.pgm
+In mysvd first_output: Sgrn.bin
+In mysvd second_output: rcgrn.bin
+In mysvd status: 0
+In mysvd num_bytes_rd: 0
+
+ncols=256 nrows=256 
+In mysvd status input file read: 1 num_bytes_rd 65536
+grn.pgm th1.len1 = 0 
+len = 264192 th1.len2 = 264192 th1.len3 = 264192 th1.len4 = 264192
+len = 264192 th1.len2 = 264192 th1.len3 = 264192 th1.len4 = 264192
+setting up ptrs with malloc
+pa 0x240f3390 ppa 0x240f2b90  
+pv = 0x24072370 ppv = 0x24071b70 
+pvt = 0x241743b0 ppvt = 0x24173bb0 
+pds = 0x24133ba0 ppds = 0x241333a0 
+puds = 0x240b2b80 ppuds = 0x240b2380 
+pudsvt = 0x241f53d0 ppudsvt = 0x241f4bd0 
+U row = 256 col = 256 
+Singular Values
+V row = 256 col = 256 
+V' row = 256 col = 256 
+Call mul u * s  
+UDS row = 256 col = 256 
+Call mul u * ds * vt 
+USDVT row = 256 col = 256 
+ps converted from float to int 0x240208e0 
+# of data written 0x10000 
+
+ 3rd thread processing th_id[2] 0x2b2f5700
+In mysvd input_file: blu.pgm
+In mysvd first_output: Sblu.bin
+In mysvd second_output: rcblu.bin
+In mysvd status: 0
+In mysvd num_bytes_rd: 0
+
+ncols=256 nrows=256 
+In mysvd status input file read: 1 num_bytes_rd 65536
+blu.pgm th2.len1 = 0 
+len = 264192 th2.len2 = 264192 th2.len3 = 264192 th2.len4 = 264192
+len = 264192 th2.len2 = 264192 th2.len3 = 264192 th2.len4 = 264192
+setting up ptrs with malloc
+pa 0x241b4bc0 ppa 0x241b43c0  
+pv = 0x240e23e0 ppv = 0x240e1be0 
+pvt = 0x24235be0 ppvt = 0x242353e0 
+pds = 0x241f53d0 ppds = 0x241f4bd0 
+puds = 0x241743b0 ppuds = 0x24173bb0 
+pudsvt = 0x242b6c00 ppudsvt = 0x242b6400 
+U row = 256 col = 256 
+Singular Values
+V row = 256 col = 256 
+V' row = 256 col = 256 
+Call mul u * s  
+UDS row = 256 col = 256 
+Call mul u * ds * vt 
+USDVT row = 256 col = 256 
+ps converted from float to int 0x240208e0 
+# of data written 0x10000 
+all threads joined
+In main status 4 num_bytes_rd 65536 
+In main status 4 num_bytes_rd 65536 
+In main status 4 num_bytes_rd 65536 
+
+real	0m3.126s
+user	0m3.120s
+sys	0m0.000s
+root@a5f804827d63:/home/cuteradio/output/svd_rgb/src#
+
+exit
+Then on the Ubuntu host
+vidal@ws009:~/docker-examples/xenial$ cd output/svd_rgb/src/
+vidal@ws009:~/docker-examples/xenial/output/svd_rgb/src$ octave
+
+In the editor run disp_S.m
+
