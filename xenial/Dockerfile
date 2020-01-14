@@ -61,8 +61,8 @@ ENV PROJECT cuteradio
 # command with the --build-arg option. By default, they are both 1001. The docker image creates
 # a group with host_gid and a user with host_uid and adds the user to the group. The symbolic
 # name of the group and user is cuteradio.
-ARG host_uid=1001
-ARG host_gid=1001
+ARG host_uid=1000
+ARG host_gid=1000
 
 RUN groupadd -g $host_gid $USER_NAME && useradd -g $host_gid -m -s /bin/bash -u $host_uid $USER_NAME
 
