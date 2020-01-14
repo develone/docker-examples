@@ -31,7 +31,7 @@ RUN apt-get update && apt-get -y install gawk wget git-core diffstat unzip texin
 
 #adding packages needed for yosys and icestorm
 
-RUN apt-get -y install tcl-dev libusb-1.0.0 libftdi-dev
+RUN apt-get -y install tcl-dev libusb-1.0.0 libftdi-dev libreadline-dev 
 
 RUN dpkg -l | sort > /usr/src/pkgsyocto.txt
 
