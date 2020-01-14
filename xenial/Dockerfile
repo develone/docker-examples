@@ -29,6 +29,10 @@ RUN apt-get update && apt-get -y install gawk wget git-core diffstat unzip texin
      build-essential chrpath socat cpio python python3 python3-pip python3-pexpect \
      xz-utils debianutils iputils-ping libsdl1.2-dev xterm tar locales
 
+#adding packages needed for yosys and icestorm
+
+RUN apt-get tcl-dev libusb-1.0.0 libftdi-dev
+
 RUN dpkg -l | sort > /usr/src/pkgsyocto.txt
 
 RUN wc /usr/src/pkgsyocto.txt
