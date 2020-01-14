@@ -8,6 +8,7 @@
 #         --tag "cuteradio-image:latest" .
 #   * Run the Docker image, which in turn runs the Yocto and which produces the Linux rootfs,
 #     with the following command:
+#     docker run -it --rm -v $PWD/yocto/output:/home/cuteradio/yocto/output xx1:latest
 #     docker run -it --rm -v $PWD/yocto/output:/home/cuteradio/yocto/output cuteradio-image:latest
 
 # Use Ubuntu 16.04 LTS as the basis for the Docker image.
