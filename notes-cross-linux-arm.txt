@@ -1,3 +1,16 @@
+Configuring tzdata
+------------------
+
+Please select the geographic area in which you live. Subsequent configuration
+questions will narrow this down by presenting a list of cities, representing
+the time zones in which they are located.
+
+  1. Africa      4. Australia  7. Atlantic  10. Pacific  13. Etc
+  2. America     5. Arctic     8. Europe    11. SystemV
+  3. Antarctica  6. Asia       9. Indian    12. US
+Geographic area: 12
+
+
 forked https://github.com/mmicko/cross-fpga https://github.com/develone/cross-fpga
 
 git clone https://github.com/develone/cross-fpga.git
@@ -26,13 +39,17 @@ docker run --rm -it "mmicko/cross-linux-arm:1.0"
 
 git clone https://github.com/develone/icestorm.git
 
-cd /usr/local/include
+git clone https://github.com/develone/yosys.git
+
+cd /usr/include
 
 ln -s /opt/arm-linux-gnueabihf/include/ftdi.h ftdi.h
 
 ln -s /opt/arm-linux-gnueabihf/include/usb.h usb.h
 
 cd /usr/local/lib/
+
+cp -R /opt/arm-linux-gnueabihf/lib/* .
 
 root@8f74bb21198c:/usr/local/lib# ln -s /opt/arm-linux-gnueabihf/lib/libftdi.a libftdi.a
 cd icestorm
@@ -57,4 +74,32 @@ mmicko/cross-base        1.0                 5b7781e1417a        27 minutes ago 
 xx1                      latest              d7aa48f9b196        5 hours ago         791MB
 cuteradio-image          latest              ba07533f66df        40 hours ago        1.05GB
 ubuntu                   16.04               c6a43cd4801e        3 weeks ago         123MB
-ubuntu                   bionic              549b9b86cb8d        3 weeks ago         64.2MB
+ubuntu 
+
+apt-get install -y tcl-dev
+
+apt-get install libreadline-dev
+ 
+apt-get install libffi-dev
+
+git clone https://github.com/develone/yosys.git
+
+cd yosys/
+
+make config-gcc
+make
+
+Build successful.
+
+make install
+    7  apt-get install libreadline-dev
+    8  make
+    9  apt-get install libffi-dev 
+   10  make
+   11  make install
+   12  cd /usr/local/
+   13  ls -la
+   14  ls -la bin/
+   15  scp -r bin devel@192.168.1.69:~/yosysbin
+   16  scp -r share/yosys/ devel@192.168.1.69:~/yosysshare
+                  bionic              549b9b86cb8d        3 weeks ago         64.2MB
