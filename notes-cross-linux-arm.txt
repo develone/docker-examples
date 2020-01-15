@@ -1,0 +1,60 @@
+forked https://github.com/mmicko/cross-fpga https://github.com/develone/cross-fpga
+
+git clone https://github.com/develone/cross-fpga.git
+
+cd ../cross-base/
+
+./build.sh 
+
+docker image ls
+REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
+ 
+mmicko/cross-base        1.0                 5b7781e1417a        7 hours ago         1.47GB
+
+cd ../cross-linux-arm
+
+./build.sh 
+
+docker run -it "mmicko/cross-linux-arm:1.0"
+
+
+docker image ls
+REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
+mmicko/cross-linux-arm   1.0                 31268cadf85c        7 hours ago         1.71GB
+
+docker run --rm -it "mmicko/cross-linux-arm:1.0"
+
+git clone https://github.com/develone/icestorm.git
+
+cd /usr/local/include
+
+ln -s /opt/arm-linux-gnueabihf/include/ftdi.h ftdi.h
+
+ln -s /opt/arm-linux-gnueabihf/include/usb.h usb.h
+
+cd /usr/local/lib/
+
+root@8f74bb21198c:/usr/local/lib# ln -s /opt/arm-linux-gnueabihf/lib/libftdi.a libftdi.a
+cd icestorm
+
+
+make
+
+usr/bin/arm-linux-gnueabihf-gcc -MD -O2  -Wall -std=c99 -I/usr/local/include    -c -o iceprog.o iceprog.c
+/usr/bin/arm-linux-gnueabihf-gcc -MD -O2  -Wall -std=c99 -I/usr/local/include    -c -o mpsse.o mpsse.c
+mpsse.c:26:10: fatal error: ftdi.h: No such file or directory
+ #include <ftdi.h>
+          ^~~~~~~~
+compilation terminated.
+<builtin>: recipe for target 'mpsse.o' failed
+make[1]: *** [mpsse.o] Error 1
+make[1]: Leaving directory '/work/icestorm/iceprog'
+Makefile:10: recipe for target 'iceprog.all' failed
+make: *** [iceprog.all] Error 2
+REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
+mmicko/cross-linux-arm   1.0                 31268cadf85c        17 minutes ago      1.71GB
+mmicko/cross-base        1.0                 5b7781e1417a        27 minutes ago      1.47GB
+xx1                      latest              d7aa48f9b196        5 hours ago         791MB
+cuteradio-image          latest              ba07533f66df        40 hours ago        1.05GB
+ubuntu                   16.04               c6a43cd4801e        3 weeks ago         123MB
+ubuntu                   bionic              549b9b86cb8d        3 weeks ago         64.2MB
