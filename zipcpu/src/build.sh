@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t="docker-fpga-builder:0.1" .
+docker build -t="zipcpu:0.1" .
