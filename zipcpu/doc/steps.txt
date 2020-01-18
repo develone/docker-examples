@@ -1,0 +1,24 @@
+Plan is to create a Docker image with zipcpu, autofpga, and verilator 01/18/20.
+
+Starting with this know working version of zipcpu.
+
+zipcpu
+commit 006f4c6a0ace5a1e6badcc583520b57cc9212e33 (HEAD -> master, origin/master, origin/HEAD)
+Author: ZipCPU <dgisselq@ieee.org>
+Date:   Mon Apr 1 14:52:50 2019 -0400
+
+    Updated interrupt controller, simplified cascades
+    
+    1. Updated the interrupt controller to create atomic accesses to enable
+       particular interrupts without also enabling (or disabling) the master
+       interrupt enable.
+    
+    2. Logic simplification within the CPU in an attempt to balance multiplexers,
+       using case statements instead of cascaded ifs
+
+autofpga
+commit 32f036a6fcc1b099b27e0202dd6cb63f29080a26 (HEAD -> master, origin/master, origin/HEAD)
+Author: ZipCPU <dgisselq@ieee.org>
+Date:   Sat Jul 27 09:13:30 2019 -0400
+
+    Missing refs to peripherals that can create errors now do so
