@@ -1,0 +1,304 @@
+vidal@ws009:~/docker-examples/zipcpu/src$ docker run --rm -it -v $PWD/yocto/output:/home/zipcpu/yocto/output zipcpu:0.5
+475 pkgs.txt
+zipcpu@9b628dd3e84b:/$ cd /home/zipcpu/yocto/output
+zipcpu@9b628dd3e84b:~/yocto/output$ ls
+catzip
+zipcpu@9b628dd3e84b:~/yocto/output$ ls /usr/local/bin
+autofpga   verilator_bin      verilator_coverage          verilator_gantt
+verilator  verilator_bin_dbg  verilator_coverage_bin_dbg  verilator_profcfunc
+zipcpu@9b628dd3e84b:~/yocto/output$ ls /usr/local/share/zipcpu/sw/install/cross-tools/bin/
+zip-addr2line  zip-cpp        zip-gcc-nm      zip-ld.bfd   zip-size
+zip-ar         zip-elfedit    zip-gcc-ranlib  zip-nm       zip-strings
+zip-as         zip-g++        zip-gcov        zip-objcopy  zip-strip
+zip-c++        zip-gcc        zip-gcov-tool   zip-objdump
+zip-cc         zip-gcc-6.2.0  zip-gfortran    zip-ranlib
+zip-c++filt    zip-gcc-ar     zip-ld          zip-readelf
+zipcpu@9b628dd3e84b:~/yocto/output$ ls /usr/local/share/zipcpu/sw/install/cross-tools/lib
+gcc  libcc1.la  libcc1.so  libcc1.so.0  libcc1.so.0.0.0
+zipcpu@9b628dd3e84b:~/yocto/output/catzip$ cat testenv.sh 
+#!/bin/bash
+export PATH=/usr/local/share/zipcpu/sw/install/cross-tools/bin:$PATH
+echo $PATH
+zipcpu@9b628dd3e84b:~/yocto/output/catzip$ . testenv.sh 
+/usr/local/share/zipcpu/sw/install/cross-tools/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+lding cpudefs.h
+zipcpu@9b628dd3e84b:~/yocto/output/catzip/rtl/catzip$ make design.h
+Building design.h
+zipcpu@9b628dd3e84b:~/yocto/output/catzip/rtl/catzip$ make verilated
+verilator -O3 -Mdir ./obj-pc -trace -cc -y cpu -y ../hexbus -y ../pport main.v
+%Error-PROCASSWIRE: ../hexbus/hbgenhex.v:83: Procedural assignment to wire, perhaps intended var (IEEE 2017 6.5): 'w_gx_char'
+                                           : ... In instance main.genbus.genhex
+  5'h00: w_gx_char = "0";
+         ^~~~~~~~~
+                    ../hexbus/hbconsole.v:156: ... note: In file included from hbconsole.v
+                    main.v:861: ... note: In file included from main.v
+%Error-PROCASSWIRE: ../hexbus/hbgenhex.v:84: Procedural assignment to wire, perhaps intended var (IEEE 2017 6.5): 'w_gx_char'
+                                           : ... In instance main.genbus.genhex
+  5'h01: w_gx_char = "1";
+         ^~~~~~~~~
+                    ../hexbus/hbconsole.v:156: ... note: In file included from hbconsole.v
+                    main.v:861: ... note: In file included from main.v
+%Error-PROCASSWIRE: ../hexbus/hbgenhex.v:85: Procedural assignment to wire, perhaps intended var (IEEE 2017 6.5): 'w_gx_char'
+                                           : ... In instance main.genbus.genhex
+  5'h02: w_gx_char = "2";
+         ^~~~~~~~~
+                    ../hexbus/hbconsole.v:156: ... note: In file included from hbconsole.v
+                    main.v:861: ... note: In file included from main.v
+%Error-PROCASSWIRE: ../hexbus/hbgenhex.v:86: Procedural assignment to wire, perhaps intended var (IEEE 2017 6.5): 'w_gx_char'
+                                           : ... In instance main.genbus.genhex
+  5'h03: w_gx_char = "3";
+         ^~~~~~~~~
+                    ../hexbus/hbconsole.v:156: ... note: In file included from hbconsole.v
+                    main.v:861: ... note: In file included from main.v
+%Error-PROCASSWIRE: ../hexbus/hbgenhex.v:87: Procedural assignment to wire, perhaps intended var (IEEE 2017 6.5): 'w_gx_char'
+                                           : ... In instance main.genbus.genhex
+  5'h04: w_gx_char = "4";
+         ^~~~~~~~~
+                    ../hexbus/hbconsole.v:156: ... note: In file included from hbconsole.v
+                    main.v:861: ... note: In file included from main.v
+%Error-PROCASSWIRE: ../hexbus/hbgenhex.v:88: Procedural assignment to wire, perhaps intended var (IEEE 2017 6.5): 'w_gx_char'
+                                           : ... In instance main.genbus.genhex
+  5'h05: w_gx_char = "5";
+         ^~~~~~~~~
+                    ../hexbus/hbconsole.v:156: ... note: In file included from hbconsole.v
+                    main.v:861: ... note: In file included from main.v
+%Error-PROCASSWIRE: ../hexbus/hbgenhex.v:89: Procedural assignment to wire, perhaps intended var (IEEE 2017 6.5): 'w_gx_char'
+                                           : ... In instance main.genbus.genhex
+  5'h06: w_gx_char = "6";
+         ^~~~~~~~~
+                    ../hexbus/hbconsole.v:156: ... note: In file included from hbconsole.v
+                    main.v:861: ... note: In file included from main.v
+%Error-PROCASSWIRE: ../hexbus/hbgenhex.v:90: Procedural assignment to wire, perhaps intended var (IEEE 2017 6.5): 'w_gx_char'
+                                           : ... In instance main.genbus.genhex
+  5'h07: w_gx_char = "7";
+         ^~~~~~~~~
+                    ../hexbus/hbconsole.v:156: ... note: In file included from hbconsole.v
+                    main.v:861: ... note: In file included from main.v
+%Error-PROCASSWIRE: ../hexbus/hbgenhex.v:91: Procedural assignment to wire, perhaps intended var (IEEE 2017 6.5): 'w_gx_char'
+                                           : ... In instance main.genbus.genhex
+  5'h08: w_gx_char = "8";
+         ^~~~~~~~~
+                    ../hexbus/hbconsole.v:156: ... note: In file included from hbconsole.v
+                    main.v:861: ... note: In file included from main.v
+%Error-PROCASSWIRE: ../hexbus/hbgenhex.v:92: Procedural assignment to wire, perhaps intended var (IEEE 2017 6.5): 'w_gx_char'
+                                           : ... In instance main.genbus.genhex
+  5'h09: w_gx_char = "9";
+         ^~~~~~~~~
+                    ../hexbus/hbconsole.v:156: ... note: In file included from hbconsole.v
+                    main.v:861: ... note: In file included from main.v
+%Error-PROCASSWIRE: ../hexbus/hbgenhex.v:93: Procedural assignment to wire, perhaps intended var (IEEE 2017 6.5): 'w_gx_char'
+                                           : ... In instance main.genbus.genhex
+  5'h0a: w_gx_char = "a";
+         ^~~~~~~~~
+                    ../hexbus/hbconsole.v:156: ... note: In file included from hbconsole.v
+                    main.v:861: ... note: In file included from main.v
+%Error-PROCASSWIRE: ../hexbus/hbgenhex.v:94: Procedural assignment to wire, perhaps intended var (IEEE 2017 6.5): 'w_gx_char'
+                                           : ... In instance main.genbus.genhex
+  5'h0b: w_gx_char = "b";
+         ^~~~~~~~~
+                    ../hexbus/hbconsole.v:156: ... note: In file included from hbconsole.v
+                    main.v:861: ... note: In file included from main.v
+%Error-PROCASSWIRE: ../hexbus/hbgenhex.v:95: Procedural assignment to wire, perhaps intended var (IEEE 2017 6.5): 'w_gx_char'
+                                           : ... In instance main.genbus.genhex
+  5'h0c: w_gx_char = "c";
+         ^~~~~~~~~
+                    ../hexbus/hbconsole.v:156: ... note: In file included from hbconsole.v
+                    main.v:861: ... note: In file included from main.v
+%Error-PROCASSWIRE: ../hexbus/hbgenhex.v:96: Procedural assignment to wire, perhaps intended var (IEEE 2017 6.5): 'w_gx_char'
+                                           : ... In instance main.genbus.genhex
+  5'h0d: w_gx_char = "d";
+         ^~~~~~~~~
+                    ../hexbus/hbconsole.v:156: ... note: In file included from hbconsole.v
+                    main.v:861: ... note: In file included from main.v
+%Error-PROCASSWIRE: ../hexbus/hbgenhex.v:97: Procedural assignment to wire, perhaps intended var (IEEE 2017 6.5): 'w_gx_char'
+                                           : ... In instance main.genbus.genhex
+  5'h0e: w_gx_char = "e";
+         ^~~~~~~~~
+                    ../hexbus/hbconsole.v:156: ... note: In file included from hbconsole.v
+                    main.v:861: ... note: In file included from main.v
+%Error-PROCASSWIRE: ../hexbus/hbgenhex.v:98: Procedural assignment to wire, perhaps intended var (IEEE 2017 6.5): 'w_gx_char'
+                                           : ... In instance main.genbus.genhex
+  5'h0f: w_gx_char = "f";
+         ^~~~~~~~~
+                    ../hexbus/hbconsole.v:156: ... note: In file included from hbconsole.v
+                    main.v:861: ... note: In file included from main.v
+%Error-PROCASSWIRE: ../hexbus/hbgenhex.v:100: Procedural assignment to wire, perhaps intended var (IEEE 2017 6.5): 'w_gx_char'
+                                            : ... In instance main.genbus.genhex
+  5'h10: w_gx_char = "R";  
+         ^~~~~~~~~
+                    ../hexbus/hbconsole.v:156: ... note: In file included from hbconsole.v
+                    main.v:861: ... note: In file included from main.v
+%Error-PROCASSWIRE: ../hexbus/hbgenhex.v:101: Procedural assignment to wire, perhaps intended var (IEEE 2017 6.5): 'w_gx_char'
+                                            : ... In instance main.genbus.genhex
+  5'h11: w_gx_char = "K";  
+         ^~~~~~~~~
+                    ../hexbus/hbconsole.v:156: ... note: In file included from hbconsole.v
+                    main.v:861: ... note: In file included from main.v
+%Error-PROCASSWIRE: ../hexbus/hbgenhex.v:102: Procedural assignment to wire, perhaps intended var (IEEE 2017 6.5): 'w_gx_char'
+                                            : ... In instance main.genbus.genhex
+  5'h12: w_gx_char = "A";  
+         ^~~~~~~~~
+                    ../hexbus/hbconsole.v:156: ... note: In file included from hbconsole.v
+                    main.v:861: ... note: In file included from main.v
+%Error-PROCASSWIRE: ../hexbus/hbgenhex.v:103: Procedural assignment to wire, perhaps intended var (IEEE 2017 6.5): 'w_gx_char'
+                                            : ... In instance main.genbus.genhex
+  5'h13: w_gx_char = "S";  
+         ^~~~~~~~~
+                    ../hexbus/hbconsole.v:156: ... note: In file included from hbconsole.v
+                    main.v:861: ... note: In file included from main.v
+%Error-PROCASSWIRE: ../hexbus/hbgenhex.v:105: Procedural assignment to wire, perhaps intended var (IEEE 2017 6.5): 'w_gx_char'
+                                            : ... In instance main.genbus.genhex
+  5'h18: w_gx_char = "T";  
+         ^~~~~~~~~
+                    ../hexbus/hbconsole.v:156: ... note: In file included from hbconsole.v
+                    main.v:861: ... note: In file included from main.v
+%Error-PROCASSWIRE: ../hexbus/hbgenhex.v:106: Procedural assignment to wire, perhaps intended var (IEEE 2017 6.5): 'w_gx_char'
+                                            : ... In instance main.genbus.genhex
+  5'h19: w_gx_char = "E";  
+         ^~~~~~~~~
+                    ../hexbus/hbconsole.v:156: ... note: In file included from hbconsole.v
+                    main.v:861: ... note: In file included from main.v
+%Error-PROCASSWIRE: ../hexbus/hbgenhex.v:107: Procedural assignment to wire, perhaps intended var (IEEE 2017 6.5): 'w_gx_char'
+                                            : ... In instance main.genbus.genhex
+  5'h1a: w_gx_char = "I";  
+         ^~~~~~~~~
+                    ../hexbus/hbconsole.v:156: ... note: In file included from hbconsole.v
+                    main.v:861: ... note: In file included from main.v
+%Error-PROCASSWIRE: ../hexbus/hbgenhex.v:108: Procedural assignment to wire, perhaps intended var (IEEE 2017 6.5): 'w_gx_char'
+                                            : ... In instance main.genbus.genhex
+  5'h1b: w_gx_char = "Z";  
+         ^~~~~~~~~
+                    ../hexbus/hbconsole.v:156: ... note: In file included from hbconsole.v
+                    main.v:861: ... note: In file included from main.v
+%Error-PROCASSWIRE: ../hexbus/hbgenhex.v:109: Procedural assignment to wire, perhaps intended var (IEEE 2017 6.5): 'w_gx_char'
+                                            : ... In instance main.genbus.genhex
+  default: w_gx_char = 8'hd;  
+           ^~~~~~~~~
+                    ../hexbus/hbconsole.v:156: ... note: In file included from hbconsole.v
+                    main.v:861: ... note: In file included from main.v
+%Error: Exiting due to 25 error(s)
+        ... See the manual and https://verilator.org for more assistance.
+Makefile:71: recipe for target 'obj-pc/Vmain.h' failed
+make: *** [obj-pc/Vmain.h] Error 1
+zipcpu@9b628dd3e84b:~/yocto/output/catzip/rtl/catzip$ cd ../../sw/host/
+zipcpu@9b628dd3e84b:~/yocto/output/catzip/sw/host$ make
+g++ -g -Wall -I. -I../../rtl/catzip -c wbregs.cpp -o obj-pc/wbregs.o
+g++ -g -Wall -I. -I../../rtl/catzip -c hexbus.cpp -o obj-pc/hexbus.o
+g++ -g -Wall -I. -I../../rtl/catzip -c llcomms.cpp -o obj-pc/llcomms.o
+g++ -g -Wall -I. -I../../rtl/catzip -c regdefs.cpp -o obj-pc/regdefs.o
+g++ -g -Wall -I. -I../../rtl/catzip -c byteswap.cpp -o obj-pc/byteswap.o
+g++ -g -Wall -I. -I../../rtl/catzip obj-pc/wbregs.o obj-pc/hexbus.o obj-pc/llcomms.o obj-pc/regdefs.o obj-pc/byteswap.o  -o pc-wbregs
+g++ -g -Wall -I. -I../../rtl/catzip -c sdramscope.cpp -o obj-pc/sdramscope.o
+g++ -g -Wall -I. -I../../rtl/catzip -c scopecls.cpp -o obj-pc/scopecls.o
+g++ -g obj-pc/sdramscope.o obj-pc/scopecls.o obj-pc/hexbus.o obj-pc/llcomms.o obj-pc/regdefs.o obj-pc/byteswap.o -o pc-sdramscope
+g++ -g -Wall -I. -I../../rtl/catzip -c zipelf.cpp -o obj-pc/zipelf.o
+g++ -g -Wall -I. -I../../rtl/catzip -c zipload.cpp -o obj-pc/zipload.o
+zipload.cpp: In function ‘int main(int, char**)’:
+zipload.cpp:280:12: warning: unused variable ‘startaddr’ [-Wunused-variable]
+   unsigned startaddr = RESET_ADDRESS, codelen = 0;
+            ^
+zipload.cpp:280:39: warning: unused variable ‘codelen’ [-Wunused-variable]
+   unsigned startaddr = RESET_ADDRESS, codelen = 0;
+                                       ^
+g++ -g obj-pc/hexbus.o obj-pc/llcomms.o obj-pc/regdefs.o obj-pc/byteswap.o obj-pc/zipelf.o obj-pc/zipload.o -lelf -o pc-zipload
+g++ -g -Wall -I. -I../../rtl/catzip -c zipstate.cpp -o obj-pc/zipstate.o
+g++ -g obj-pc/zipstate.o obj-pc/hexbus.o obj-pc/llcomms.o obj-pc/regdefs.o obj-pc/byteswap.o -o pc-zipstate
+g++ -g -Wall -I. -I../../rtl/catzip -c zipdbg.cpp -o obj-pc/zipdbg.o
+g++ -g -Wall -I. -I../../rtl/catzip -c zopcodes.cpp -o obj-pc/zopcodes.o
+g++ -g -Wall -I. -I../../rtl/catzip -c twoc.cpp -o obj-pc/twoc.o
+g++ -g obj-pc/zipdbg.o obj-pc/hexbus.o obj-pc/llcomms.o obj-pc/regdefs.o obj-pc/byteswap.o obj-pc/zopcodes.o obj-pc/twoc.o -lcurses -o pc-zipdbg
+g++ -g -Wall -I. -I../../rtl/catzip -c wrsdram.cpp -o obj-pc/wrsdram.o
+g++ -g obj-pc/hexbus.o obj-pc/llcomms.o obj-pc/regdefs.o obj-pc/byteswap.o obj-pc/zipelf.o obj-pc/wrsdram.o -lelf -o pc-wrsdram
+g++ -g -Wall -I. -I../../rtl/catzip -c rdsdram.cpp -o obj-pc/rdsdram.o
+g++ -g obj-pc/hexbus.o obj-pc/llcomms.o obj-pc/regdefs.o obj-pc/byteswap.o obj-pc/zipelf.o obj-pc/rdsdram.o -lelf -o pc-rdsdram
+
+zipcpu@9b628dd3e84b:~/yocto/output/catzip/sw/host$ ls -la
+total 2536
+drwxrwxr-x 3 zipcpu zipcpu   4096 Jan 19 02:06 .
+drwxrwxr-x 6 zipcpu zipcpu   4096 Jan 19 01:42 ..
+-rw-rw-r-- 1 zipcpu zipcpu   1651 Jan 19 01:42 arch.sh
+-rw-rw-r-- 1 zipcpu zipcpu 262140 Jan 19 01:42 blu.bin
+-rw-rw-r-- 1 zipcpu zipcpu  65536 Jan 19 01:42 blu-out.8
+-rw-rw-r-- 1 zipcpu zipcpu   2026 Jan 19 01:42 byteswap.cpp
+-rw-rw-r-- 1 zipcpu zipcpu   1738 Jan 19 01:42 byteswap.h
+-rw-rw-r-- 1 zipcpu zipcpu    784 Jan 19 01:42 convertrgb.m
+-rwxrwxr-x 1 zipcpu zipcpu    210 Jan 19 01:42 cputest_hello.sh
+-rw-rw-r-- 1 zipcpu zipcpu   5328 Jan 19 01:42 devbus.h
+-rw-rw-r-- 1 zipcpu zipcpu    341 Jan 19 01:42 disp_rgb.m
+-rw-rw-r-- 1 zipcpu zipcpu    810 Jan 19 01:42 exe_wbregs.c
+-rw-rw-r-- 1 zipcpu zipcpu  82013 Jan 19 01:42 fpga_C.png
+-rw-rw-r-- 1 zipcpu zipcpu 124298 Jan 19 01:42 fwddwt.png
+-rw-rw-r-- 1 zipcpu zipcpu 139745 Jan 19 01:42 fwdtmp.png
+-rw-rw-r-- 1 zipcpu zipcpu     54 Jan 19 01:42 .gitignore
+-rw-rw-r-- 1 zipcpu zipcpu 262140 Jan 19 01:42 grn.bin
+-rw-rw-r-- 1 zipcpu zipcpu  65536 Jan 19 01:42 grn-out.8
+-rw-rw-r-- 1 zipcpu zipcpu  18453 Jan 19 01:42 hexbus.cpp
+-rw-rw-r-- 1 zipcpu zipcpu   3462 Jan 19 01:42 hexbus.h
+-rwxrwxr-x 1 zipcpu zipcpu    201 Jan 19 01:42 jpeg.sh
+-rw-rw-r-- 1 zipcpu zipcpu   4135 Jan 19 01:42 llcomms.cpp
+-rw-rw-r-- 1 zipcpu zipcpu   2399 Jan 19 01:42 llcomms.h
+-rw-rw-r-- 1 zipcpu zipcpu   5069 Jan 19 01:42 Makefile
+-rw-rw-r-- 1 zipcpu zipcpu  16512 Jan 19 01:42 netpport.cpp
+drwxr-xr-x 2 zipcpu zipcpu   4096 Jan 19 02:06 obj-pc
+-rwxr-xr-x 1 zipcpu zipcpu  72440 Jan 19 02:06 pc-rdsdram
+-rwxr-xr-x 1 zipcpu zipcpu 119264 Jan 19 02:06 pc-sdramscope
+-rwxr-xr-x 1 zipcpu zipcpu  69704 Jan 19 02:06 pc-wbregs
+-rwxr-xr-x 1 zipcpu zipcpu  72464 Jan 19 02:06 pc-wrsdram
+-rwxr-xr-x 1 zipcpu zipcpu 109656 Jan 19 02:06 pc-zipdbg
+-rwxr-xr-x 1 zipcpu zipcpu  77560 Jan 19 02:06 pc-zipload
+-rwxr-xr-x 1 zipcpu zipcpu  64000 Jan 19 02:06 pc-zipstate
+-rw-rw-r-- 1 zipcpu zipcpu   1635 Jan 19 01:42 port.h
+-rw-rw-r-- 1 zipcpu zipcpu   7126 Jan 19 01:42 pptest.cpp
+-rw-rw-r-- 1 zipcpu zipcpu   6585 Jan 19 01:42 rd_bytes.c
+-rwxrwxr-x 1 zipcpu zipcpu    622 Jan 19 01:42 rd_pattern.sh
+-rw-rw-r-- 1 zipcpu zipcpu   4449 Jan 19 01:42 rdsdram.cpp
+-rw-rw-r-- 1 zipcpu zipcpu 262140 Jan 19 01:42 red.bin
+-rw-rw-r-- 1 zipcpu zipcpu  65536 Jan 19 01:42 red-out.8
+-rw-rw-r-- 1 zipcpu zipcpu   3513 Jan 19 01:42 regdefs.cpp
+-rw-rw-r-- 1 zipcpu zipcpu   4769 Jan 19 01:42 regdefs.h
+-rwxrwxr-x 1 zipcpu zipcpu    303 Jan 19 01:42 remoterunjpeg.sh
+-rwxrwxr-x 1 zipcpu zipcpu   1171 Jan 19 01:42 rem_sim_hw_test.sh
+-rwxrwxr-x 1 zipcpu zipcpu    676 Jan 19 01:42 rem_test_sim102218.sh
+-rw-rw-r-- 1 zipcpu zipcpu    234 Jan 19 01:42 resetbus.cpp
+-rw-rw-r-- 1 zipcpu zipcpu   1117 Jan 19 01:42 rgb.m
+-rw-rw-r-- 1 zipcpu zipcpu 262144 Jan 19 01:42 rgb_pack.bin
+-rwxrwxr-x 1 zipcpu zipcpu    194 Jan 19 01:42 runjpeg.sh
+-rw-rw-r-- 1 zipcpu zipcpu  13602 Jan 19 01:42 scopecls.cpp
+-rw-rw-r-- 1 zipcpu zipcpu   7993 Jan 19 01:42 scopecls.h
+-rw-rw-r-- 1 zipcpu zipcpu   4188 Jan 19 01:42 sdramscope.cpp
+-rwxrwxr-x 1 zipcpu zipcpu   1634 Jan 19 01:42 sim_hw_test.sh
+-rwxrwxr-x 1 zipcpu zipcpu    328 Jan 19 01:42 testbanks.sh
+-rwxrwxr-x 1 zipcpu zipcpu    137 Jan 19 01:42 testscope.sh
+-rwxrwxr-x 1 zipcpu zipcpu    489 Jan 19 01:42 test_sim102218.sh
+-rw-rw-r-- 1 zipcpu zipcpu  23268 Jan 19 01:42 ttybus.cpp
+-rw-rw-r-- 1 zipcpu zipcpu   4164 Jan 19 01:42 ttybus.h
+-rw-rw-r-- 1 zipcpu zipcpu   1865 Jan 19 01:42 twoc.cpp
+-rw-rw-r-- 1 zipcpu zipcpu   1740 Jan 19 01:42 twoc.h
+-rw-rw-r-- 1 zipcpu zipcpu   7330 Jan 19 01:42 wbregs.cpp
+-rwxrwxr-x 1 zipcpu zipcpu   1505 Jan 19 01:42 wr_pattern.sh
+-rw-rw-r-- 1 zipcpu zipcpu   4449 Jan 19 01:42 wrsdram.cpp
+-rwxrwxr-x 1 zipcpu zipcpu    231 Jan 19 01:42 wr_test.sh
+-rw-rw-r-- 1 zipcpu zipcpu  19967 Jan 19 01:42 zipdbg.cpp
+-rw-rw-r-- 1 zipcpu zipcpu   7512 Jan 19 01:42 zipelf.cpp
+-rw-rw-r-- 1 zipcpu zipcpu   1789 Jan 19 01:42 zipelf.h
+-rw-rw-r-- 1 zipcpu zipcpu  10637 Jan 19 01:42 zipload.cpp
+-rw-rw-r-- 1 zipcpu zipcpu   4588 Jan 19 01:42 zipstate.cpp
+-rw-rw-r-- 1 zipcpu zipcpu  32591 Jan 19 01:42 zopcodes.cpp
+-rw-rw-r-- 1 zipcpu zipcpu   3413 Jan 19 01:42 zopcodes.h
+zipcpu@9b628dd3e84b:~/yocto/output/catzip/sw/host$ cd ../zlib/
+zipcpu@9b628dd3e84b:~/yocto/output/catzip/sw/zlib$ make
+zip-gcc -O3 -I. -I../../rtl/catzip -c udiv.c -o obj-zip/udiv.o
+zip-gcc -O3 -I. -I../../rtl/catzip -c umod.c -o obj-zip/umod.o
+zip-gcc -O3 -I. -I../../rtl/catzip -c syscalls.c -o obj-zip/syscalls.o
+zip-gcc -O3 -I. -I../../rtl/catzip -ffreestanding -c crt0.c -o obj-zip/crt0.o
+zip-ar -cru libcatzip.a obj-zip/udiv.o obj-zip/umod.o obj-zip/syscalls.o obj-zip/crt0.o
+zipcpu@9b628dd3e84b:~/yocto/output/catzip/sw/zlib$ cd ../board/
+zipcpu@9b628dd3e84b:~/yocto/output/catzip/sw/board$ make
+Building dependency file(s)
+zip-gcc -O3 -I../zlib -I../../rtl/catzip -I. -c -Wa,-nocis -fno-builtin cputest.c -o obj-zip/cputest.o
+zip-gcc -O3 -I../zlib -I../../rtl/catzip -I. -T boardram.ld -fno-builtin -Wl,-Map=obj-zip/cputest.map obj-zip/cputest.o -o cputest
+zip-gcc -O3 -c  hello.c -o obj-zip/hello.o
+zip-gcc -O3 -I../zlib -I../../rtl/catzip -I. -Tboardram.ld -L../zlib -Wl,-Map=obj-zip/hello.map obj-zip/hello.o -lc -lcatzip -o hello
+zip-gcc -O3 -I../zlib -I../../rtl/catzip -I. -c  jpeg.c -o obj-zip/jpeg.o
+zip-gcc -O3 -c  lifting.c -o obj-zip/lifting.o
+zip-gcc -O3 -I../zlib -I../../rtl/catzip -I. -Tboardram.ld -L../zlib obj-zip/lifting.o  -Wl,-Map=obj-zip/jpeg.map obj-zip/jpeg.o -lc -lcatzip -o jpeg -lgcc

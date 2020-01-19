@@ -18,7 +18,13 @@ FROM ubuntu:16.04
 # without them.
 RUN apt-get update && apt-get -y install gawk wget git-core diffstat unzip texinfo gcc-multilib \
      build-essential chrpath socat cpio python python3 python3-pip python3-pexpect \
-     xz-utils debianutils iputils-ping libsdl1.2-dev xterm tar locales
+     xz-utils debianutils iputils-ping libsdl1.2-dev xterm tar locales \
+     bison flex autoconf automake libtool libgmp3-dev \
+     libmpfr-dev libmpfr-doc libmpfr4 libmpfr4-dbg libmpc-dev libelf-dev bc \
+     ncurses-dev ctags mercurial gperf
+
+ 
+
 
 # By default, Ubuntu uses dash as an alias for sh. Dash does not support the source command
 # needed for setting up the build environment in CMD. Use bash as an alias for sh.
@@ -45,6 +51,28 @@ RUN groupadd -g $host_gid $USER_NAME && useradd -g $host_gid -m -s /bin/bash -u 
 # Perform the Yocto build as user cuteradio (not as root).
 # NOTE: The USER command does not set the environment variable HOME.
 
+RUN git clone https://git.veripool.org/git/verilator \
+    && cd verilator \
+    && autoconf \
+    && ./configure \
+    && make \
+    && make install \
+    && cd ../ \
+    && rm -rf verilator
+
+RUN git clone https://github.com/develone/zipcpu.git \
+    && cd zipcpu \
+    && make \
+    && tar -cvf /usr/local/share/zipcpu.tar ../zipcpu  \
+    && cd /usr/local/share \
+    && tar -xvf zipcpu.tar \
+    && rm -f zipcpu.tar
+
+RUN git clone https://github.com/develone/autofpga.git autofpga \
+    && cd autofpga \
+    && make \
+    && cp sw/autofpga /usr/local/bin \
+    && cd .. && rm -rf autofpga 
 # By default, docker runs as root. However, Yocto builds should not be run as root, but as a 
 # normal user. Hence, we switch to the newly created user cuteradio.
 USER $USER_NAME
@@ -55,6 +83,6 @@ ENV BUILD_INPUT_DIR /home/$USER_NAME/yocto/input
 ENV BUILD_OUTPUT_DIR /home/$USER_NAME/yocto/output
 RUN mkdir -p $BUILD_INPUT_DIR $BUILD_OUTPUT_DIR
 
- 
+
 
 
