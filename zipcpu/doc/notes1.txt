@@ -1,5 +1,5 @@
 vidal@ws009:~/docker-examples/zipcpu/src$ docker run --rm -it -v $PWD/yocto/output:/home/zipcpu/yocto/output zipcpu:0.5
-475 pkgs.txt
+475 pkgs-0.5.txt
 zipcpu@9b628dd3e84b:/$ cd /home/zipcpu/yocto/output
 zipcpu@9b628dd3e84b:~/yocto/output$ ls
 catzip

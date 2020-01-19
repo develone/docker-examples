@@ -21,8 +21,13 @@ RUN apt-get update && apt-get -y install gawk wget git-core diffstat unzip texin
      xz-utils debianutils iputils-ping libsdl1.2-dev xterm tar locales \
      bison flex autoconf automake libtool libgmp3-dev \
      libmpfr-dev libmpfr-doc libmpfr4 libmpfr4-dbg libmpc-dev libelf-dev bc \
-     ncurses-dev ctags mercurial gperf
-
+     ncurses-dev ctags mercurial gperf \
+     clang libreadline-dev tcl-dev libffi-dev pkg-config libftdi-dev libboost-all-dev \
+     cmake libeigen3-dev
+#The following packages are needed when creating zipcpu:06
+#with docker-fpga-builder
+#     clang libreadline-dev tcl-dev libffi-dev pkg-config libftdi-dev libboost-all-dev \
+#     cmake libeigen3-dev
  
 
 
@@ -50,6 +55,25 @@ RUN groupadd -g $host_gid $USER_NAME && useradd -g $host_gid -m -s /bin/bash -u 
 
 # Perform the Yocto build as user cuteradio (not as root).
 # NOTE: The USER command does not set the environment variable HOME.
+
+RUN git clone https://github.com/develone/icestorm.git icestorm \
+    && cd icestorm \
+    && make -j$(nproc) \
+    && make install \
+    && cd .. && rm -rf icestorm
+
+RUN git clone https://github.com/develone/nextpnr nextpnr \
+    && cd nextpnr \
+    && cmake -DARCH=ice40 -DBUILD_GUI=OFF -DCMAKE_INSTALL_PREFIX=/usr/local . \
+    && make -j$(nproc) \
+    && make install \
+    && cd .. && rm -rf nextpnr
+
+RUN git clone https://github.com/develone/yosys.git yosys \
+    && cd yosys \
+    && make -j$(nproc) \
+    && make install \
+    && cd .. && rm -rf yosys
 
 RUN git clone https://git.veripool.org/git/verilator \
     && cd verilator \
