@@ -8,7 +8,7 @@
 #         --tag "cuteradio-image:latest" .
 #   * Run the Docker image, which in turn runs the Yocto and which produces the Linux rootfs,
 #     with the following command:
-#     docker run -it --rm -v $PWD/yocto/output:/home/cuteradio/yocto/output cuteradio-image:latest
+#     docker run -it --rm -v $PWD/yocto/output:/home/zipcpu/yocto/output zipcpu:0.62
 
 # Use Ubuntu 16.04 LTS as the basis for the Docker image.
 FROM ubuntu:16.04
@@ -75,17 +75,19 @@ RUN git clone https://github.com/develone/yosys.git yosys \
     && make install \
     && cd .. && rm -rf yosys
 
+#/using ver from mypi3-15 
 RUN git clone https://git.veripool.org/git/verilator \
-    && cd verilator \
+    && cd verilator && git checkout v3.926 \
     && autoconf \
-    && ./configure \
+    && ./configure --prefix /usr/local \
     && make \
     && make install \
     && cd ../ \
     && rm -rf verilator
 
+#/using ver from mypi3-15 
 RUN git clone https://github.com/develone/zipcpu.git \
-    && cd zipcpu \
+    && cd zipcpu && git checkout  006f4c \
     && make \
     && tar -cvf /usr/local/share/zipcpu.tar ../zipcpu  \
     && cd /usr/local/share \
