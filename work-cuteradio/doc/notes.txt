@@ -1,0 +1,32 @@
+01/21/20
+https://www.embeddeduse.com/2019/05/06/yocto-builds-with-crops-containers/
+
+cd ~/docker-examples/
+mkdir work-cuteradio
+cd work-cuteradio/
+git clone --recurse-submodules https://github.com/develone/cuteradio.git
+docker run --rm -it -v ${PWD}:/work-cuteradio crops/poky:ubuntu-16.04 --workdir=/work-cuteradio
+vidal@ws009:~/docker-examples/work-cuteradio$ docker run --rm -it -v ${PWD}:/work-cuteradio crops/poky:ubuntu-16.04 --workdir=/work-cuteradio
+Unable to find image 'crops/poky:ubuntu-16.04' locally
+ubuntu-16.04: Pulling from crops/poky
+3386e6af03b0: Already exists 
+49ac0bbe6c8e: Already exists 
+d1983a67e104: Already exists 
+1a0f3a523f04: Already exists 
+beeac46a13af: Pull complete 
+5a274f221dd6: Pull complete 
+b6a76f462a65: Pull complete 
+b0da948a350d: Pull complete 
+af3420dfc1de: Pull complete 
+f3fc46eb998e: Pull complete 
+76aeb280cbee: Pull complete 
+1415854b9955: Pull complete 
+310d05a69f05: Pull complete 
+Digest: sha256:6bc6148206aca1f02589efdfe0b5f61499d2f1f110b4231dd82fbff6ad1ee469
+Status: Downloaded newer image for crops/poky:ubuntu-16.04
+Modified Docker file 1001 to 1000 for both 
+ARG host_uid=1001
+ARG host_gid=1001
+ARG host_uid=1000
+ARG host_gid=1000
+docker run --rm -it -v ${PWD}:/work-cuteradio crops/poky:ubuntu-16.04 --workdir=/work-cuteradio
