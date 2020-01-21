@@ -82,3 +82,60 @@ BBLAYERS ?= " \
   /work-cuteradio/cuteradio/sources/meta-raspberrypi \
   /work-cuteradio/cuteradio/sources/meta-qt5 \
   /work-cuteradio/cuteradio/sources/meta-cuteradio \
+
+export TEMPLATECONF=${PWD}/cuteradio/sources/meta-cuteradio/custom && \
+   source ${PWD}/cuteradio/sources/poky/oe-init-build-env build && \
+   bitbake cuteradio-image
+
+*******************************
+
+pokyuser@284e0517e46a:/work-cuteradio$ ls cuteradio/sources/poky/
+bitbake        meta           meta-skeleton      README.hardware  README.qemu
+documentation  meta-poky      meta-yocto-bsp     README.LSB       scripts
+LICENSE        meta-selftest  oe-init-build-env  README.poky
+pokyuser@284e0517e46a:/work-cuteradio$ . cuteradio/sources/poky/oe-init-build-env 
+You had no conf/local.conf file. This configuration file has therefore been
+created for you with some default values. You may wish to edit it to, for
+example, select a different MACHINE (target hardware). See conf/local.conf
+for more information as common configuration options are commented.
+
+You had no conf/bblayers.conf file. This configuration file has therefore been
+created for you with some default values. To add additional metadata layers
+into your configuration please add entries to conf/bblayers.conf.
+
+The Yocto Project has extensive documentation about OE including a reference
+manual which can be found at:
+    http://yoctoproject.org/documentation
+
+For more information about OpenEmbedded see their website:
+    http://www.openembedded.org/
+
+
+### Shell environment set up for builds. ###
+
+You can now run 'bitbake <target>'
+
+Common targets are:
+    core-image-minimal
+    core-image-sato
+    meta-toolchain
+    meta-ide-support
+
+You can also run generated qemu images with a command like 'runqemu qemux86'
+pokyuser@284e0517e46a:/work-cuteradio/build$
+
+pokyuser@284e0517e46a:/work-cuteradio/build$ bitbake core-image-minimal
+
+Build Configuration:
+BB_VERSION           = "1.40.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "ubuntu-16.04"
+TARGET_SYS           = "i586-poky-linux"
+MACHINE              = "qemux86"
+DISTRO               = "poky"
+DISTRO_VERSION       = "2.6.1"
+TUNE_FEATURES        = "m32 i586"
+TARGET_FPU           = ""
+meta                 
+meta-poky            
+meta-yocto-bsp       = "<unknown>:<unknown>"
