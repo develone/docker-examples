@@ -1,0 +1,76 @@
+testing rpi4 32bit 01/22/20
+Needed to learn how to use submodules in git.
+git clone https://github.com/develone/rpi4-crops.git
+cd rpi4-crops
+mkdir sources
+cd sources/
+git submodule add git://git.openembedded.org/meta-openembedded; git submodule add git://git.yoctoproject.org/meta-raspberrypi; git submodule add git://git.yoctoproject.org/poky.git
+cd poky/
+git checkout da81542171f0cab0ea1a9bf45ac3c256e6f343f9
+cd ../meta-openembedded/
+git checkout aad5b3d070cd8c58828b0975cf861d8ebc90f460
+cd ../meta-raspberrypi/
+git checkout 3ae288aa38e3a1609c6e861918a874416d3f0f13
+git commit -a
+git push
+
+git clone --recurse-submodules https://github.com/develone/rpi4-crops.git
+
+vidal@ws009:~/docker-examples/work-cuteradio$ docker run --rm -it -v ${PWD}:/work-cuteradio crops/poky:ubuntu-16.04 --workdir=/work-cuteradio
+export TEMPLATECONF=${PWD}/rpi4-crops/first_sample_build_files/conf && \
+	source ${PWD}/rpi4-crops/sources/poky/oe-init-build-env build
+
+You had no conf/local.conf file. This configuration file has therefore been
+created for you with some default values. You may wish to edit it to, for
+example, select a different MACHINE (target hardware). See conf/local.conf
+for more information as common configuration options are commented.
+
+You had no conf/bblayers.conf file. This configuration file has therefore been
+created for you with some default values. To add additional metadata layers
+into your configuration please add entries to conf/bblayers.conf.
+
+The Yocto Project has extensive documentation about OE including a reference
+manual which can be found at:
+    http://yoctoproject.org/documentation
+
+For more information about OpenEmbedded see their website:
+    http://www.openembedded.org/
+
+pokyuser@acef646ce6d9:/work-cuteradio/build$ bitbake core-image-minimal
+NOTE: Your conf/bblayers.conf has been automatically updated.
+
+lrwxrwxrwx 2 vidal vidal         63 Jan 24 11:51 core-image-minimal-raspberrypi4.rpi-sdimg -> core-image-minimal-raspberrypi4-20200124151638.rootfs.rpi-sdimg
+3355 of 5278
+
+vidal@ws009:~/docker-examples/work-cuteradio/build/tmp/deploy/images/raspberrypi4$sudo dd bs=16M if=core-image-minimal-raspberrypi4.rpi-sdimg status='progress' of=
+/dev/sdb
+2080374784 bytes (2.1 GB, 1.9 GiB) copied, 2.01171 s, 1.0 GB/s
+133+1 records in
+133+1 records out
+2243952640 bytes (2.2 GB, 2.1 GiB) copied, 288.213 s, 7.8 MB/s
+sudo sync
+[sudo] password for vidal:
+
+vidal@ws009:~/docker-examples/work-cuteradio/build/tmp/deploy/images/raspberrypi4$ sudo dd bs=16M if=core-image-sato-raspberrypi4.rpi-sdimg status='progress' of
+=/dev/sdb
+[sudo] password for vidal: 
+2499805184 bytes (2.5 GB, 2.3 GiB) copied, 3.0445 s, 821 MB/s 
+151+1 records in
+151+1 records out
+2541748224 bytes (2.5 GB, 2.4 GiB) copied, 321.522 s, 7.9 MB/s
+ 
+pokyuser@3d93c579d52e:/work-cuteradio/build$ bitbake meta-toolchain
+-rwxr-xr-x 2 pokyuser pokyuser 109765725 Jan 24 23:26 poky-glibc-x86_64-meta-toolchain-cortexa7t2hf-neon-vfpv4-raspberrypi4-toolchain-3.0.1.sh
+bitbake core-image-sato -c populate_sdk_ext
+ERROR: core-image-sato-1.0-r0 do_sdk_depends: The file /lib/firmware/brcm/brcmfmac43430-sdio.bin is installed by both linux-firmware and linux-firmware-rpidistro, aborting
+ERROR: Logfile of failure stored in: /work-cuteradio/build/tmp/work/raspberrypi4-poky-linux-gnueabi/core-image-sato/1.0-r0/temp/log.do_sdk_depends.27117
+ERROR: Task (/work-cuteradio/rpi4-crops/sources/poky/meta/recipes-sato/images/core-image-sato.bb:do_sdk_depends) failed with exit code '1'
+
+vidal@ws009:~/docker-examples/work-cuteradio$ ls -la build/
+total 72
+drwxr-xr-x  5 vidal vidal  4096 Jan 24 16:44 .
+drwxrwxr-x  8 vidal vidal  4096 Jan 25 06:54 ..
+-rw-r--r--  1 vidal vidal 51129 Jan 24 16:44 bitbake-cookerdaemon.log
+drwxr-xr-x  2 vidal vidal  4096 Jan 24 16:44 cache
+drwxr-xr-x  2 vidal vidal  4096 Jan 24 08:15 conf
+drwxr-xr-x 15 vidal vidal  4096 Jan 24 16:43 tmp
