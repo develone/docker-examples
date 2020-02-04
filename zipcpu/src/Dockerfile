@@ -70,7 +70,7 @@ RUN git clone https://github.com/develone/nextpnr nextpnr \
     && cd .. && rm -rf nextpnr
 
 RUN git clone https://github.com/develone/yosys.git yosys \
-    && cd yosys \
+    && cd yosys && git checkout 0488492 \
     && make -j$(nproc) \
     && make install \
     && cd .. && rm -rf yosys

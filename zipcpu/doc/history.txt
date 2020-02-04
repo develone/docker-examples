@@ -1,0 +1,19 @@
+    1  cd /home/zipcpu/
+    2  ls
+    3  git clone https://github.com/develone/catzip
+    4  cd catzip/
+    5  . ./dockerenv.sh 
+    6  ls
+    7  make
+    8  cd rtl/catzip/
+    9  make
+   10  cd ../../sw/host/
+   11  make
+   12  cd ../zlib/
+   13  make
+   14  cd ../board/
+   15  make
+   16  cd ../../sim/verilated/
+   17  make
+   18  yosys -V
+   19  history > ../../../yocto/output/history.txt
